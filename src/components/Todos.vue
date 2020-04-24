@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>hello</h1>
+    <h3>Todos</h3>
     <div v-for="todo in allTodos" :key="todo.id" class="todo">
       {{ todo.title }}
       <i @click="deleteTodo(todo.id)" class="fas fa-trash-alt"></i>
