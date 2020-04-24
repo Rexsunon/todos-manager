@@ -13,6 +13,8 @@ module.exports = {
     quotes: process.env.NODE_ENV === "production" ? "warn" : "off",
     "comma-dangle": process.env.NODE_ENV === "production" ? "warn" : "off",
     "arrow-parens": process.env.NODE_ENV === "production" ? "warn" : "off",
-    "no-shadow": process.env.NODE_ENV === "production" ? "warn" : "off"
+    "no-shadow": process.env.NODE_ENV === "production" ? "warn" : "off",
+    "no-return-assign": process.env.NODE_ENV === "production" ? "warn" : "off",
+    "no-labels": process.env.NODE_ENV === "production" ? "warn" : "off"
   }
 };
