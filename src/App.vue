@@ -29,6 +29,7 @@ body {
   padding: 0;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, Helvetica, sans-serif;
   line-height: 1.6;
+  height: 100vh;
   background: #e8f7f0;
 }
 

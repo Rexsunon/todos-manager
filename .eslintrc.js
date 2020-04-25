@@ -16,6 +16,7 @@ module.exports = {
     "no-shadow": process.env.NODE_ENV === "production" ? "warn" : "off",
     "no-return-assign": process.env.NODE_ENV === "production" ? "warn" : "off",
     "no-labels": process.env.NODE_ENV === "production" ? "warn" : "off",
-    radix: process.env.NODE_ENV === "production" ? "warn" : "off"
+    radix: process.env.NODE_ENV === "production" ? "warn" : "off",
+    "no-unused-vars": process.env.NODE_ENV === "production" ? "warn" : "warn"
   }
 };

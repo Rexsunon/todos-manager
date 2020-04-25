@@ -3,16 +3,7 @@
 import Axios from "axios";
 
 const state = {
-  todos: [
-    {
-      id: 1,
-      title: "Todo One"
-    },
-    {
-      id: 2,
-      title: "Todo Tow"
-    }
-  ]
+  todos: []
 };
 
 const getters = {
@@ -20,7 +11,7 @@ const getters = {
 };
 
 const actions = {
-  async fetchTodo({ commit }) {
+  async fetchTodos({ commit }) {
     const response = await Axios.get("https://jsonplaceholder.typicode.com/todos");
 
     console.log(response.data);
@@ -28,13 +19,16 @@ const actions = {
   },
 
   async addTodo({ commit }, title) {
-    const response = await Axios.post("", { title, completed: false });
+    const response = await Axios.post("https://jsonplaceholder.typicode.com/todos", {
+      title,
+      completed: false
+    });
 
     commit("newTodo", response.data);
   },
 
   async deleteTodo({ commit }, id) {
-    await Axios.delete(`/${id}`);
+    await Axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`);
 
     commit("removeTodo", id);
   },
@@ -42,16 +36,31 @@ const actions = {
   async filterTodos({ commit }, e) {
     const limit = parseInt(e.target.options[e.target.options.selectedIndex].innerText);
 
-    const response = await Axios.get(`?limit=${limit}`);
+    const response = await Axios.get(`https://jsonplaceholder.typicode.com/todos?_limit=${limit}`);
 
     commit("setTodos", response.data);
+  },
+
+  async updateTodo({ commit }, updTodo) {
+    const response = await Axios.put(
+      `https://jsonplaceholder.typicode.com/todos/${updTodo.id}`,
+      updTodo
+    );
+
+    commit("updateTodo", response.data);
   }
 };
 
 const mutations = {
   setTodos: (state, todos) => (state.todos = todos),
   newTodo: (state, todo) => state.todos.unshift(todo),
-  removeTodo: (state, id) => (state.todos = state.todos.filter(todo => todo.id !== id))
+  removeTodo: (state, id) => (state.todos = state.todos.filter(todo => todo.id !== id)),
+  updateTodo: (state, updTodo) => {
+    const index = state.todo.findIndex(todo => todo.id === updTodo.id);
+    if (index !== -1) {
+      state.todos.splice(index, 1, updTodo);
+    }
+  }
 };
 
 export default {
