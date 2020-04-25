@@ -17,6 +17,7 @@ module.exports = {
     "no-return-assign": process.env.NODE_ENV === "production" ? "warn" : "off",
     "no-labels": process.env.NODE_ENV === "production" ? "warn" : "off",
     radix: process.env.NODE_ENV === "production" ? "warn" : "off",
-    "no-unused-vars": process.env.NODE_ENV === "production" ? "warn" : "warn"
+    "no-unused-vars": process.env.NODE_ENV === "production" ? "warn" : "warn",
+    "import/order": process.env.NODE_ENV === "production" ? "warn" : "warn"
   }
 };

@@ -15,7 +15,8 @@
         v-bind:class="{ 'is-complete': todo.completed }"
       >
         {{ todo.title }}
-        <i @click="deleteTodo(todo.id)" class="fas fa-trash-alt"></i>
+        <!-- <i @click="deleteTodo(todo.id)" class="fas fa-trash-alt"></i> -->
+        <font-awesome-icon @click="deleteTodo(todo.id)" :icon="['fas', 'trash-alt']" class="del" />
       </div>
     </div>
   </div>
@@ -23,6 +24,10 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+
+library.add(faTrashAlt);
 
 export default {
   name: "Todos",
@@ -32,7 +37,7 @@ export default {
       const updTodo = {
         id: todo.id,
         title: todo.title,
-        computed: !todo.computed
+        completed: !todo.completed
       };
 
       this.updateTodo(updTodo);
@@ -62,7 +67,7 @@ export default {
   cursor: pointer;
 }
 
-i {
+.del {
   position: absolute;
   bottom: 10px;
   right: 10px;
